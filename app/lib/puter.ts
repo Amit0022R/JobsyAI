@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+// puter.js
 declare global {
     interface Window {
         puter: {
