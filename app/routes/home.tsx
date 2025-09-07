@@ -3,6 +3,8 @@ import type { Route } from "./+types/home";
 import { resumes } from "../../constants";
 import ResumeCard from "~/components/ResumeCard";
 import { useEffect, useState } from "react";
+import {usePuterStore} from "~/lib/puter";
+import {Link, useNavigate} from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,14 +15,14 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
 
-  // const { auth, kv } = usePuterStore();
-  // const navigate = useNavigate();
-  // const [resumes, setResumes] = useState<Resume[]>([]);
-  // const [loadingResumes, setLoadingResumes] = useState(false);
+  const { auth, kv } = usePuterStore();
+  const navigate = useNavigate();
+  const [resumes, setResumes] = useState<Resume[]>([]);
+  const [loadingResumes, setLoadingResumes] = useState(false);
 
-  // useEffect(() => {
-  //   if(!auth.isAuthenticated) navigate('/auth?next=/');
-  // }, [auth.isAuthenticated])
+  useEffect(() => {
+    if(!auth.isAuthenticated) navigate('/auth?next=/');
+  }, [auth.isAuthenticated])
 
   // useEffect(() => {
   //   const loadResumes = async () => {
@@ -42,8 +44,6 @@ export default function Home() {
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover " >
       
       <Navbar />
-
-      
 
       <section className="main-section" >
         <div className="page-heading py-16" >
