@@ -1,4 +1,5 @@
 import { create } from "zustand";
+// Puter is powering all different functionalities
 
 // puter.js
 declare global {
@@ -97,9 +98,12 @@ interface PuterStore {
     clearError: () => void;
 }
 
+// shortcut to quickly get puter api inside our functions without repeating biolerplate code in every component or function where we want to access it
 const getPuter = (): typeof window.puter | null =>
     typeof window !== "undefined" && window.puter ? window.puter : null;
 
+
+// usePuterStore is a hook that creates zustand store and loads all necessary functions within it. 
 export const usePuterStore = create<PuterStore>((set, get) => {
     const setError = (msg: string) => {
         set({
@@ -455,3 +459,4 @@ export const usePuterStore = create<PuterStore>((set, get) => {
         clearError: () => set({ error: null }),
     };
 });
+// usePuterStore gives access to all functionalities from puter library like auth, fs, ai, kv
